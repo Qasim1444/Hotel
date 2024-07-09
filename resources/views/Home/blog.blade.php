@@ -116,8 +116,7 @@
                     <div class="col-lg-4">
                         @foreach ($post as $posts)
                         <div class="post-entry-1 lg">
-                            <a href="single-post.html"><img src="assets/img/post-landscape-1.jpg" alt=""
-                                    class="img-fluid"></a>
+                            <a href="single-post.html"> <img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
                             <div class="post-meta"><span class="date">Culture</span> <span
                                     class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                             <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>
@@ -140,8 +139,7 @@
                             @foreach ($post as $posts)
                             <div class="col-lg-4 border-start custom-border">
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="assets/img/post-landscape-2.jpg"
-                                            alt="" class="img-fluid"></a>
+                                    <a href="single-post.html"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
                                     <div class="post-meta"><span class="date">Sport</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                                     <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>
@@ -153,8 +151,7 @@
                             <div class="col-lg-4 border-start custom-border">
 
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="assets/img/post-landscape-8.jpg"
-                                            alt="" class="img-fluid"></a>
+                                    <a href="single-post.html"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
                                     <div class="post-meta"><span class="date">Travel</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                                     <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>

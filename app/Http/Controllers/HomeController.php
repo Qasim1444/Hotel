@@ -15,6 +15,10 @@ use Stripe\Checkout\Session;
 class HomeController extends Controller
 {
 
+    public function singleblog()
+    {
+        return view();
+    }
 
     public function index()
     {

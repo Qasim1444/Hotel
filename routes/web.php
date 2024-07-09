@@ -39,7 +39,16 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+
+
+
+
+
 Route::get('/blog',[HomeController::class,'blog']);
+Route::get('/singleblog',[HomeController::class,'singleblog']);
+
+
 Route::get('/',[HomeController::class,'index']);
 Route::post('/addreservationhome', [HomeController::class, 'addreservationhome']);
 Route::post("/addcart/{id}",[HomeController::class,"addcart"]);
@@ -49,6 +58,9 @@ Route::post("/orderconfirm",[HomeController::class,"orderconfirm"]);
 Route::get('/stripe/{totalprice}',[HomeController::class,'stripe']);
 Route::post('stripe/{totalprice}',[HomeController::class,'stripePost'])->name('stripe.post');
 Route::post('/create-checkout-session', [HomeController::class, 'createCheckoutSession']);
+
+
+
 Route::get('/success', function () {
     // Handle successful payment here
     return view('success');
@@ -58,6 +70,11 @@ Route::get('/cancel', function () {
     // Handle canceled payment here
     return view('cancel');
 });
+
+
+
+
+
 
 Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 Route::get('/userdata',[AdminController::class,'userdata']);
