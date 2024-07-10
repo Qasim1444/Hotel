@@ -86,7 +86,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($post as $posts)
                         <div class="swiper-slide">
-                            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{{ asset('image/' . $posts->image) }}');">
+                            <a href="{{route('edit.post.home',$posts->id)}}" class="img-bg d-flex align-items-end" style="background-image: url('{{ asset('image/' . $posts->image) }}');">
                                 <div class="img-bg-inner">
                                     <h2>{{ Str::limit($posts->title, 20) }}</h2>
                                     <p>{{ Str::limit($posts->description, 50) }}</p>
@@ -116,7 +116,7 @@
                     <div class="col-lg-4">
                         @foreach ($post as $posts)
                         <div class="post-entry-1 lg">
-                            <a href="single-post.html"> <img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
+                            <a href="{{url('singleblog')}}"> <img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
                             <div class="post-meta"><span class="date">Culture</span> <span
                                     class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                             <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>
@@ -139,10 +139,10 @@
                             @foreach ($post as $posts)
                             <div class="col-lg-4 border-start custom-border">
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
+                                    <a href="{{url('singleblog')}}"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
                                     <div class="post-meta"><span class="date">Sport</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>
+                                    <h2><a href="{{url('singleblog')}}">{{ Str::limit($posts->title, 20) }}</a></h2>
                                 </div>
 
                             </div>
@@ -151,15 +151,15 @@
                             <div class="col-lg-4 border-start custom-border">
 
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
+                                    <a href="{{url('singleblog')}}"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
                                     <div class="post-meta"><span class="date">Travel</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>
+                                    <h2><a href="{{url('singleblog')}}">{{ Str::limit($posts->title, 20) }}</a></h2>
                                 </div>
                             </div>
                             @endforeach
                             <!-- Trending Section -->
-                         !-- End Trending Section -->
+
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -172,7 +172,7 @@
 
 
 
-                                        <a href="single-post.html">
+                                        <a href="{{url('singleblog')}}">
                                             <span class="number">1</span>
                                             <h2>{{ Str::limit($posts->title, 20) }}</h2>
                                             <h3>

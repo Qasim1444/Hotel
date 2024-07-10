@@ -46,7 +46,7 @@ Route::middleware([
 
 
 Route::get('/blog',[HomeController::class,'blog']);
-Route::get('/singleblog',[HomeController::class,'singleblog']);
+Route::get('/singleblog/{id}',[HomeController::class,'singleblog'])->name('edit.post.home');
 
 
 Route::get('/',[HomeController::class,'index']);

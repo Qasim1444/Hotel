@@ -15,9 +15,10 @@ use Stripe\Checkout\Session;
 class HomeController extends Controller
 {
 
-    public function singleblog()
+    public function singleblog($id)
     {
-        return view();
+        $posts=Post::find($id);
+        return view('Home.singlepost',compact('posts'));
     }
 
     public function index()
