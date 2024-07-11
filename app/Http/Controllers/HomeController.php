@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Chief;
 use App\Models\Food;
 use App\Models\Order;
+use App\Models\Category;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,11 @@ class HomeController extends Controller
 
     public function singleblog($id)
     {
+        $categories=Category::all();
+        $tags = Post::findOrFail($id)->tags;
         $posts=Post::find($id);
-        return view('Home.singlepost',compact('posts'));
+        $post=Post::all();
+        return view('Home.singlepost',compact('posts','post','tags','categories'));
     }
 
     public function index()
