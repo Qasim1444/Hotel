@@ -113,52 +113,22 @@
         <section id="posts" class="posts">
             <div class="container" data-aos="fade-up">
                 <div class="row g-5">
-                    <div class="col-lg-4">
-                        @foreach ($post as $posts)
-                        <div class="post-entry-1 lg">
-                            <a href="{{url('singleblog')}}"> <img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
-                            <div class="post-meta"><span class="date">Culture</span> <span
-                                    class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                            <h2><a href="single-post.html">{{ Str::limit($posts->title, 20) }}</a></h2>
-                            <p class="mb-4 d-block">{{ Str::limit($posts->description, 1000) }}</p>
 
-                            <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="assets/img/person-1.jpg" alt=""
-                                        class="img-fluid"></div>
-                                <div class="name">
-                                    <h3 class="m-0 p-0">Cameron Williamson</h3>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
 
-                    <div class="col-lg-5">
+                    <div class="col-lg-8">
 
                         <div class="row g-5">
                             @foreach ($post as $posts)
-                            <div class="col-lg-4 border-start custom-border">
+                            <div class="col-lg-4 ">
                                 <div class="post-entry-1">
-                                    <a href="{{url('singleblog')}}"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
-                                    <div class="post-meta"><span class="date">Sport</span> <span
-                                            class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <h2><a href="{{url('singleblog')}}">{{ Str::limit($posts->title, 20) }}</a></h2>
+                                    <a href="{{route('edit.post.home',$posts->id)}}"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
+
+                                    <h2><a href="{{route('edit.post.home',$posts->id)}}">{{ Str::limit($posts->title, 20) }}</a></h2>
                                 </div>
 
                             </div>
                             @endforeach
-                            @foreach ($post as $posts)
-                            <div class="col-lg-4 border-start custom-border">
-
-                                <div class="post-entry-1">
-                                    <a href="{{url('singleblog')}}"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
-                                    <div class="post-meta"><span class="date">Travel</span> <span
-                                            class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <h2><a href="{{url('singleblog')}}">{{ Str::limit($posts->title, 20) }}</a></h2>
-                                </div>
-                            </div>
-                            @endforeach
-                            <!-- Trending Section -->
+                           
 
                         </div>
                     </div>
@@ -172,13 +142,13 @@
 
 
 
-                                        <a href="{{url('singleblog')}}">
+                                        <a href="{{route('edit.post.home',$posts->id)}}">
                                             <span class="number">1</span>
                                             <h2>{{ Str::limit($posts->title, 20) }}</h2>
                                             <h3>
                                                 <td>{{ Str::limit($posts->description, 50) }}</td>
                                             </h3>
-                                            <span class="author">Jane Cooper</span>
+
                                         </a>
                                     </li>
                                 @endforeach
