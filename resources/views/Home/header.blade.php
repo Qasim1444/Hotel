@@ -5,7 +5,8 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="assets/images/klassy-logo.png" align="klassy cafe html template">
+                        <img src="assets/images/klassy-logo.png" width="100px" height="100px" class="img-fluid" alt="Klassy Logo">
+
                         <a href="#" class="menu-trigger">
                             <span>Menu</span>
                             <!-- Add your menu icon or content here -->
