@@ -75,7 +75,7 @@ Route::get('/cancel', function () {
 
 
 
-
+Route::post('/commentsstore', [HomeController::class, 'commentstore'])->name('comments.store');
 Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 Route::get('/userdata',[AdminController::class,'userdata']);
 Route::get('/deleteuser/{id}', [AdminController::class, 'deleteuser'])->name('delete.user');
@@ -105,7 +105,7 @@ Route::post('/addorder', [AdminController::class, 'addorder']);
 Route::get('/destroyorder/{id}', [AdminController::class, 'destroyorder'])->name('destroyorder');
 Route::get('/editorder/{id}', [AdminController::class, 'editorder'])->name('edit.order');
 Route::post('/updateorder/{id}', [AdminController::class, 'updateorder']);
-Route::get("/search", [AdMinController::class, "search"]);
+Route::get("/search", [AdminController::class, "search"]);
 
 
 

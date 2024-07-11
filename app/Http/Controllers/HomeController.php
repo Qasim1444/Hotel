@@ -12,9 +12,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
+use App\Models\Comment;
 use Stripe\Checkout\Session;
 class HomeController extends Controller
 {
+    public function commentstore(Request $request)
+
+    {
+
+        $input = $request->all();
+
+        $request->validate([
+            'body' => 'required',
+        ]);
+
+        $input['user_id'] = auth()->user()->id;
+
+        Comment::create($input);
+
+        return back();
+    }
 
     public function singleblog($id)
     {
