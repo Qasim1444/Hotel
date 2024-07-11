@@ -39,7 +39,7 @@
     <div class="table-responsive">
         <form action="{{ url('orderconfirm') }}" method="post">
             @csrf
-            <table class="table table-bordered table-hover table-striped text-center">
+            <table class=" mt-5 table table-bordered table-hover table-striped text-center">
                 <thead class="table-warning">
                     <tr>
                         <th scope="col">Food Name</th>
@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <input type="text" name="price[]" value="{{ $item->price }}" hidden>
-                                {{ $item->price }}
+                                ${{ $item->price }}
                             </td>
                             <td>
                                 <input type="text" name="quantity[]" value="{{ $item->quantity }}" hidden>
@@ -86,7 +86,7 @@
                     <input type="text" name="address" placeholder="Address" required>
                 </div>
                 <div style="padding:10px">
-                    <button style="background-color:#FB5849;" type="submit" value="confirm order" class="btn btn-primary">Confirm Order</button>
+                    <button style="background-color:#FB5849;" type="submit" value="confirm order" class="btn btn-primary">Pay Using Card</button>
                 </div>
             </div>
         </form>

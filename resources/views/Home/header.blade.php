@@ -32,7 +32,7 @@
                         <li class="scroll-to-section"><a href="#chefs">Chefs</a></li>
                         <li class="scroll-to-section"><a href="{{url('blog')}}">Blog</a></li>
 
-                        <li class="scroll-to-section"><a href="">Contact Us</a></li>
+                        <a class="nav-link scroll-to-section" href="#contact">Contact Us</a>
                         <li c1ass="scroll-to-section">
                             @auth
 
