@@ -5,14 +5,9 @@
                 <div class="left-text-content">
                     <div class="section-heading">
                         <h6>About Us</h6>
-                        <h2>We Leave A Delicious Memory For You</h2>
+                        <h2>We Create Lasting Delicious Memories for You</h2>
                     </div>
-                    <p>Klassy Cafe is one of the best <a href="https://templatemo.com/tag/restaurant" target="_blank"
-                                                         rel="sponsored">restaurant HTML templates</a> with Bootstrap
-                        v4.5.2 CSS framework. You can download and feel free to use this website template layout for
-                        your restaurant business. You are allowed to use this template for commercial purposes. <br><br>You
-                        are NOT allowed to redistribute the template ZIP file on any template donwnload website. Please
-                        contact us for more information.</p>
+                    <p>At our restaurant, we pride ourselves on delivering an exceptional dining experience. We create lasting delicious memories for you with every meal. Our chefs use the freshest ingredients to craft dishes that delight your taste buds and leave you longing for more. Whether you're celebrating a special occasion or simply enjoying a night out, our welcoming atmosphere and delectable menu ensure unforgettable moments. Come dine with us and savor the memories.</p>
                     <div class="row">
                         <div class="col-4">
                             <img src="assets/images/about-thumb-01.jpg" alt="">
@@ -30,7 +25,7 @@
                 <div class="right-content">
                     <div class="thumb">
                         <a rel="nofollow" href="http://youtube.com"><i class="fa fa-play"></i></a>
-                        <img src="assets/images/about-video-bg.jpg" alt="">
+                        <img src="assets/images/klassy-logo.png" alt="">
                     </div>
                 </div>
             </div>
