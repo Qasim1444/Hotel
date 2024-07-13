@@ -100,47 +100,52 @@
             });
     </script>
 
-    @if(count($posts) > 0)
-        <table class="table">
-            <thead>
+@if(count($posts) > 0)
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Tags</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($posts as $post)
             <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Tags</th>
-                <th>Action</th>
+                <td>{{ $post->id }}</td>
+                <td>{{ $post->title }}</td>
+                <td>{!! Str::limit($post->description, 50) !!}</td>
+                <td>{{ $post->status == 1 ? 'Publish' : 'Draft' }}</td>
+                <td>{{ $post->category->name }}</td>
+                <td>
+                    <img src="{{ asset('image/' .$post->image) }}" alt="Post Image" class="img-fluid" style="max-width: 100px;">
+                </td>
+                <td>
+                    @foreach($post->tags as $tag)
+                        {{ $tag->name }}@if(!$loop->last), @endif
+                    @endforeach
+                </td>
+                <td>
+                    <a class="btn btn-success btn-sm" href="{{ route('edit.post', $post->id) }}">Update</a>
+                    <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this post?')" href="{{ route('delete.post', $post->id) }}">Delete</a>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            @foreach($posts as $post)
-                <tr>
-                    <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
-                    <td>{!! Str::limit($post->description, 50) !!}</td>
-                    <td>{{ $post->status == 1 ? 'Publish' : 'Draft' }}</td>
-                    <td>{{ $post->category->name }}</td>
-                    <td>
-                        <img src="{{ asset('image/' .$post->image) }}" alt="Post Image" style="max-width: 100px;">
-                    </td>
-                    <td>
-                        @foreach($post->tags as $tag)
-                            {{ $tag->name }},
-                        @endforeach
-                    </td>
-                    <td>
-                        <a class="btn btn-success" href="{{route('edit.post',$post->id)}}">Update</a>
-                        <a class="btn btn-danger" onclick="return confirm('are you sure remove this post')" href="{{route('delete.post',$post->id)}}">Delete</a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    @else
-        <p>No posts found.</p>
-    @endif
+        @endforeach
+        </tbody>
+    </table>
+</div>
+@else
+<div class="alert alert-warning" role="alert">
+    No posts found.
+</div>
+@endif
+
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>

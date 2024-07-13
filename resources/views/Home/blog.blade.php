@@ -31,13 +31,14 @@
     <link href="assets/css/variables.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: ZenBlog
-  * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https:///bootstrapmade.com/license/
-  ======================================================== -->
+    <style>
+        .post-image {
+            height: 200px; /* Adjust as needed */
+            width: 100%;
+            object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -119,15 +120,18 @@
 
                         <div class="row g-5">
                             @foreach ($post as $posts)
-                            <div class="col-lg-4 ">
+                            <div class="col-lg-4">
                                 <div class="post-entry-1">
-                                    <a href="{{route('edit.post.home',$posts->id)}}"><img src="{{ asset('image/' .$posts->image) }}" class="img-fluid" alt="Post Image" ></a>
-
-                                    <h2><a href="{{route('edit.post.home',$posts->id)}}">{{ Str::limit($posts->title, 20) }}</a></h2>
+                                    <a href="{{ route('edit.post.home', $posts->id) }}">
+                                        <img class="post-image" src="{{ asset('image/' . $posts->image) }}" alt="Post Image">
+                                    </a>
+                                    <h2>
+                                        <a href="{{ route('edit.post.home', $posts->id) }}">{{ Str::limit($posts->title, 20) }}</a>
+                                    </h2>
                                 </div>
-
                             </div>
-                            @endforeach
+                        @endforeach
+
 
 
                         </div>
@@ -143,7 +147,7 @@
 
 
                                         <a href="{{route('edit.post.home',$posts->id)}}">
-                                            <span class="number">1</span>
+
                                             <h2>{{ Str::limit($posts->title, 20) }}</h2>
                                             <h3>
                                                 <td>{!!Str::limit($posts->description, 50) !!}</td>

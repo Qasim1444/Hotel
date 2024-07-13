@@ -85,7 +85,7 @@
 
 
                             <figure class="my-4">
-                                <img src="{{ asset('image/' . $posts->image) }}" class="img-fluid" alt="Post Image">
+                                <img src="{{ asset('image/' . $posts->image) }}" class="img-fluid w-75 h-75" alt="Post Image">
 
                                 <p>{!! $posts->description !!} </p>
 
