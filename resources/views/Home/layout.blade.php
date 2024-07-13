@@ -50,7 +50,7 @@
 <!-- ***** Menu Area Ends ***** -->
 
 <!-- ***** Chefs Area Starts ***** -->
-@include('Home.Chief')
+@include('Home.chief')
 <!-- ***** Chefs Area Ends ***** -->
 
 <!-- ***** Reservation Us Area Starts ***** -->

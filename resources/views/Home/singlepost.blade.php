@@ -44,7 +44,7 @@
             <a href="index.html" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-  
+
             </a>
 
 
@@ -87,7 +87,7 @@
                             <figure class="my-4">
                                 <img src="{{ asset('image/' . $posts->image) }}" class="img-fluid" alt="Post Image">
 
-                                <p>{{ $posts->description }}</p>
+                                <p>{!! $posts->description !!} </p>
 
                         </div><!-- End Single Post Content -->
 

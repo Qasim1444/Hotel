@@ -43,7 +43,7 @@ Route::middleware([
 
 
 
-
+Route::post('ckeditor/upload', [AdminController::class, 'upload'])->name('ckeditor.upload');
 
 Route::get('/blog',[HomeController::class,'blog']);
 Route::get('/singleblog/{id}',[HomeController::class,'singleblog'])->name('edit.post.home');
@@ -114,8 +114,9 @@ Route::get("/search", [AdminController::class, "search"]);
 Route::get('/post', [AdminController::class, 'post']);
 Route::post('/admin/poststore', [AdminController::class, 'poststore']);
 Route::get('/admin/deletepost/{id}', [AdminController::class, 'deletepost'])->name('delete.post');
-Route::get('/admin/editpost/{id}', [AdminController::class, 'editpost'])->name('edit.post');
-Route::post('/admin/updatepost/{id}', [AdminController::class, 'updatepost'])->name('update.post');
+Route::get('/editpost/{id}', [AdminController::class, 'editpost'])->name('edit.post');
+Route::post('/updatepost/{id}', [AdminController::class, 'updatepost'])->name('update.post');
+
 
 Route::get('/categories', [AdminController::class, 'categories']);
 Route::post('/admin/addcategoriesstore', [AdminController::class, 'categoriesstore']);

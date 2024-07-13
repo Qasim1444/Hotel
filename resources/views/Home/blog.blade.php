@@ -49,7 +49,7 @@
             <a href="index.html" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-           
+
             </a>
 
             <div class="position-relative">
@@ -89,7 +89,7 @@
                             <a href="{{route('edit.post.home',$posts->id)}}" class="img-bg d-flex align-items-end" style="background-image: url('{{ asset('image/' . $posts->image) }}');">
                                 <div class="img-bg-inner">
                                     <h2>{{ Str::limit($posts->title, 20) }}</h2>
-                                    <p>{{ Str::limit($posts->description, 50) }}</p>
+                                    <p>{!! Str::limit($posts->description, 50) !!}</p>
 
                                 </div>
                             </a>
@@ -146,7 +146,7 @@
                                             <span class="number">1</span>
                                             <h2>{{ Str::limit($posts->title, 20) }}</h2>
                                             <h3>
-                                                <td>{{ Str::limit($posts->description, 50) }}</td>
+                                                <td>{!!Str::limit($posts->description, 50) !!}</td>
                                             </h3>
 
                                         </a>

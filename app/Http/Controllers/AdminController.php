@@ -16,6 +16,7 @@ use DB;
 class AdminController extends Controller
 {
 
+
     public function index()
     {
         return view('Home.layout');
@@ -477,7 +478,20 @@ class AdminController extends Controller
     }
 
 
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
 
+            $request->file('upload')->move(public_path('media'), $fileName);
+
+            $url = asset('media/' . $fileName);
+            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+        }
+    }
     public function post()
     {
         $categories = Category::all();
@@ -492,12 +506,12 @@ class AdminController extends Controller
         try {
             $request->validate([
                 'title' => ['required', 'string', 'max:255'],
-                'description' => ['required', 'string', 'max:3000'],
+                'description' => 'required',
                 'status' => ['required', 'integer', 'max:255'],
                 'category' => ['required', 'integer', 'max:255'],
                 'tags' => ['required', 'array'],
                 'tags.*' => ['required', 'string', 'max:255'],
-                'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'] // Adjust max file size as needed
+                'image' => ['image', 'mimes:jpeg,png,jpg,gif'] // Adjust max file size as needed
             ]);
 
             // Handle image upload
@@ -542,53 +556,54 @@ class AdminController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        return view('Admin.editposts', compact('categories'), compact('tags','posts'));
+        return view('admin.editposts', compact('categories'), compact('tags','posts'));
 
     }
 
     public function updatepost($id, Request $request)
-    {
-        DB::beginTransaction();
+{
+    DB::beginTransaction();
 
-        try {
-            $request->validate([
-                'title' => ['required', 'string', 'max:255'],
-                'description' => ['required', 'string', 'max:3000'],
-                'status' => ['required', 'integer', 'max:255'],
-                'category' => ['required', 'integer', 'max:255'],
-                'tags' => ['required', 'array'],
-                'tags.*' => ['required', 'string', 'max:255']
-            ]);
+    try {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => 'required',
+            'status' => ['required', 'integer', 'max:255'],
+            'category' => ['required', 'integer', 'max:255'],
+            'tags' => ['required', 'array'],
+            'tags.*' => ['required', 'string', 'max:255'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif']
+        ]);
 
-            $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
 
-            $image = $post->image; // Default to the existing image
+        $image = $post->image; // Default to the existing image
 
-            if ($request->hasFile('image')) {
-                $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('image'), $image);
-            }
-
-            $post->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'status' => $request->status,
-                'category_id' => $request->category,
-                'image' => $image // Store image path in the database
-            ]);
-
-            // Sync the tags for the post
-            $post->tags()->sync($request->tags);
-
-            DB::commit();
-        } catch (Exception $ex) {
-            DB::rollBack();
-
-            return back()->withErrors($ex->getMessage());
+        if ($request->hasFile('image')) {
+            $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('image'), $image);
         }
 
-        return redirect()->back()->with('success', 'Post successfully updated.');
+        $post->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+            'category_id' => $request->category,
+            'image' => $image // Store image path in the database
+        ]);
+
+        // Sync the tags for the post
+        $post->tags()->sync($request->tags);
+
+        DB::commit();
+    } catch (Exception $ex) {
+        DB::rollBack();
+
+        return back()->withErrors($ex->getMessage());
     }
+
+    return redirect()->back()->with('success', 'Post successfully updated.');
+}
 
 
 

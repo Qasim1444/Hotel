@@ -40,9 +40,7 @@
                                     Cart{{$count}}
                                 </a>
                             @endauth
-                            @guest
-               <a href="">   Cart[0]</a>
-                            @endguest
+                         
 
                         </li>
                         <li class="scroll-to-section">

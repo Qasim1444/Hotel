@@ -16,6 +16,7 @@ use App\Models\Comment;
 use Stripe\Checkout\Session;
 class HomeController extends Controller
 {
+
     public function commentstore(Request $request)
 
     {
