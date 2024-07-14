@@ -18,21 +18,22 @@ class HomeController extends Controller
 {
 
     public function commentstore(Request $request)
-
     {
-
         $input = $request->all();
 
         $request->validate([
             'body' => 'required',
         ]);
 
-        $input['user_id'] = auth()->user()->id;
-
-        Comment::create($input);
-
-        return back();
+        if (auth()->check()) {
+            $input['user_id'] = auth()->user()->id;
+            Comment::create($input);
+            return back();
+        } else {
+            return redirect()->route('login')->with('error', 'You need to be logged in to comment.');
+        }
     }
+
 
     public function singleblog($id)
     {

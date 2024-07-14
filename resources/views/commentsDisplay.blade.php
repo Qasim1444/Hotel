@@ -24,7 +24,7 @@
 
             <div class="form-group">
 
-                <input type="submit" class="btn btn-warning" value="Reply" />
+                <input style="background-color:#FB5849;" type="submit" class="btn btn-warning" value="Reply" />
 
             </div>
 
@@ -34,4 +34,4 @@
 
     </div>
 
-@endforeach  
+@endforeach

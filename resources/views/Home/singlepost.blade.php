@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
+    <base href="/public">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -14,26 +13,14 @@
         rel="stylesheet">
 
     <title>Classic Cafe - Restaurant</title>
-    <style>
-        .post-image {
-            height: 200px; /* Adjust as needed */
-            width: 100%;
-            object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
-        }
-
-    </style>
 
     @include('Home.css')
+
+
 </head>
 
 <body>
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+
 
     <header class="header-area header-sticky">
         <div class="container">
@@ -111,67 +98,107 @@
         </div>
     </header>
 
-    <section class="single-post-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9" data-aos="fade-up">
-                    <!-- Single Post Content -->
-                    <div class="single-post">
-                        <h1 class="mb-5">{{ $posts->title }}</h1>
-                        <figure class="my-4">
-                            <img src="{{ asset('image/' . $posts->image) }}" class="img-fluid w-75 h-75" alt="Post Image">
-                        </figure>
-                        <p>{!! $posts->description !!}</p>
-                    </div>
-                    <!-- Comments Form -->
-                    <h2>{{ $posts->title }}</h2>
-                    <h4>Add comment</h4>
-                    <form method="post" action="{{ route('comments.store') }}">
-                        @csrf
-                        <div class="row justify-content-center mt-5">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-12 mb-3">
-                                        <input type="hidden" name="post_id" value="{{ $posts->id }}" />
-                                        <textarea class="form-control" id="comment-message" name="body" placeholder="Enter your name" cols="30" rows="10"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="submit" class="btn btn-primary" value="Post comment">
-                                    </div>
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-3">
+
+        <div class="row">
+            <div class="col-md-9 p-5">
+
+
+                <h1 class="mb-5">{{ $posts->title }}</h1>
+                <figure class="my-4">
+                    <img src="{{ asset('image/' . $posts->image) }}" class="img-fluid w-75 h-75" alt="Post Image">
+                </figure>
+                <p>{!! $posts->description !!}</p>
+                <h4>Add comment</h4>
+                <form method="post" action="{{ route('comments.store') }}">
+                    @csrf
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <input type="hidden" name="post_id" value="{{ $posts->id }}" />
+                                    <textarea class="form-control" id="comment-message" name="body" placeholder="Enter your name" cols="30"
+                                        rows="10"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <input style="background-color:#FB5849;" type="submit" class="btn btn-primary" value="Post comment">
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    @include('commentsDisplay', ['comments' => $posts->comments, 'post_id' => $posts->id])
-                </div>
-                <div class="col-md-3">
-                    <!-- Sidebar -->
-                    @foreach ($categories as $categorie)
-                    <div class="aside-block">
-                        <h3 class="aside-title">Categories</h3>
-                        <ul class="list-unstyled">
-                            <li><a><i class="bi bi-chevron-right"></i>{{ $categorie->name }}</a></li>
-                        </ul>
                     </div>
-                    @endforeach
-                    @foreach ($tags as $tag)
-                    <div class="aside-block">
-                        <h3 class="aside-title">Tags</h3>
-                        <ul class="list-unstyled">
-                            <li><a>{{ $tag->name }}</a></li>
-                        </ul>
-                    </div>
-                    @endforeach
-                </div>
+                </form>
+                @include('commentsDisplay', ['comments' => $posts->comments, 'post_id' => $posts->id])
+
+
             </div>
+            <div class="col-md-3">
+                <h1 class="mt-5 pt-5 text-primary">Categories</h1>
+                <ul class="list-unstyled pt-3">
+                    @foreach ($categories as $categorie)
+                        <li class="mb-2">
+                            <a href="#" class="text-dark text-decoration-none">{{ $categorie->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <h1 class="mt-5 text-primary">Tags</h1>
+                <ul class="list-unstyled pt-3">
+                    @foreach ($tags as $tag)
+                        <li class="mb-2">
+                            <a href="#" class="text-dark text-decoration-none">{{ $tag->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <h1 class="mt-5 text-primary">Recent Blogs</h1>
+                <ul class="list-unstyled pt-3">
+                    @foreach ($post as $posts)
+                        <li class="mb-2">
+                            <a href="#" class="text-dark text-decoration-none">{{ Str::limit($posts->title, 20) }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <style>
+                .col-md-3 h1 {
+                    font-size: 1.5rem;
+                    border-bottom: 2px solid #007bff;
+                    padding-bottom: 10px;
+                }
+                .col-md-3 ul {
+                    padding-left: 0;
+                }
+                .col-md-3 li {
+                    margin-bottom: 10px;
+                }
+                .col-md-3 a {
+                    transition: color 0.3s ease;
+                }
+                .col-md-3 a:hover {
+                    color: #007bff;
+                }
+            </style>
+
+
+
         </div>
-    </section>
 
 
 
 
-    <!-- jQuery -->
-    @include('Home.js')
+
+        @include('Home.js')
+
 </body>
 
 </html>
