@@ -36,13 +36,21 @@ class HomeController extends Controller
 
     public function singleblog($id)
     {
+        $user_id = Auth::id();
+        $count = cart::where('user_id', $user_id)->count();
         $categories=Category::all();
         $tags = Post::findOrFail($id)->tags;
         $posts=Post::find($id);
         $post=Post::all();
-        return view('Home.singlepost',compact('posts','post','tags','categories'));
+        return view('Home.singlepost',compact('posts','post','tags','categories','count'));
     }
+    public function blog() {
+        $user_id = Auth::id();
+        $count = cart::where('user_id', $user_id)->count();
+        $post=Post::all();
+        return view('Home.blog',compact('post','count'));
 
+    }
     public function index()
     {
         if (Auth::id()) {
@@ -193,11 +201,6 @@ return  redirect()->back();
         // Redirect to Checkout
         return redirect()->to($session->url);
     }
-    public function blog() {
 
-        $post=Post::all();
-        return view('Home.blog',compact('post'));
-
-    }
 
 }
