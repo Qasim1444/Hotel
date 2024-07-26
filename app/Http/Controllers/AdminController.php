@@ -409,7 +409,7 @@ class AdminController extends Controller
     public function edittag($id)
     {
         $tag = Tag::find($id);
-        return view('Admin.edittag', compact('tag'));
+        return view('admin.edittag', compact('tag'));
     }
 
     public function updatetag($id, Request $request)
@@ -426,7 +426,7 @@ class AdminController extends Controller
     public function categories()
     {
         $categories = Category::all();
-        return view('Admin.categories',compact('categories'));
+        return view('admin.categories',compact('categories'));
     }
     public function categoriesstore(Request $request)
     {
@@ -463,7 +463,7 @@ class AdminController extends Controller
     public function editcategories($id)
     {
         $categories = Category::find($id);
-        return view('Admin.editCategories', compact('categories'));
+        return view('admin.editCategories', compact('categories'));
     }
 
     public function updatecategories($id, Request $request)
@@ -497,7 +497,7 @@ class AdminController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $posts = Post::all();
-        return view('Admin.Post', compact('categories'), compact('tags','posts'));
+        return view('admin.Post', compact('categories'), compact('tags','posts'));
     }
 
     public function poststore(Request $request)

@@ -33,7 +33,7 @@
                                             <div class="left-list">
                                                 <div class="col-lg-12">
                                                     <div class="tab-item">
-                                                        <img src="assets/images/tab-item-01.png" alt="">
+                                                        <img style="height: 20%;width: 20%;" src="https://images.unsplash.com/photo-1522251253478-4cae03d93949?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RnJlc2glMjBDaGlja2VuJTIwU2FsYWR8ZW58MHx8MHx8fDA%3D" alt="">
                                                         <h4>Fresh Chicken Salad</h4>
                                                         <p>A refreshing mix of crispy lettuce, tender grilled chicken, and a variety of fresh vegetables</p>
                                                         <div class="price">
@@ -43,7 +43,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="tab-item">
-                                                        <img src="assets/images/tab-item-02.png" alt="">
+                                                        <img src="https://images.unsplash.com/photo-1650460069032-3c410224fe55?q=80&w=1462&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                                                         <h4>Orange Juice</h4>
                                                         <p>Freshly squeezed orange juice, packed with vitamins and perfect for a morning pick-me-up.</p>
                                                         <div class="price">
@@ -53,7 +53,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="tab-item">
-                                                        <img src="assets/images/tab-item-03.png" alt="">
+                                                        <img src="https://images.unsplash.com/photo-1658431618300-a69b07fb5782?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                                                         <h4>Fruit Salad</h4>
                                                         <p>A delightful mix of seasonal fruits, freshly cut and served with a hint of mint.</p>
                                                         <div class="price">
@@ -69,7 +69,7 @@
                                             <div class="right-list">
                                                 <div class="col-lg-12">
                                                     <div class="tab-item">
-                                                        <img src="assets/images/tab-item-04.png" alt="">
+                                                        <img src="https://images.unsplash.com/photo-1615086041895-7ee4caecf7cf?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                                                         <h4>Eggs Omelette</h4>
                                                         <p>A classic omelette made with farm-fresh eggs, filled with cheese, herbs, and your choice of vegetables.</p>
                                                         <div class="price">
@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="tab-item">
-                                                        <img src="assets/images/tab-item-05.png" alt="">
+                                                        <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                                                         <h4>Dollma Pire</h4>
                                                         <p>A traditional dish featuring stuffed grape leaves with a savory filling of rice, herbs, and spices.</p>
                                                         <div class="price">
@@ -89,7 +89,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="tab-item">
-                                                        <img src="assets/images/tab-item-06.png" alt="">
+                                                        <img src="https://images.unsplash.com/photo-1676976197968-06120d4e1827?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                                                         <h4>Omelette & Cheese</h4>
                                                         <p>A fluffy omelette filled with a blend of cheeses, perfect for a satisfying breakfast or brunch.</p>
                                                         <div class="price">

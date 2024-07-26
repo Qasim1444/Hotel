@@ -7,12 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <title>Classic Cafe - Restaurant</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6444873763445172"
+     crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-6444873763445172">
+    <title>FoodieFiles</title>
 
     @include('Home.css')
 
