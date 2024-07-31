@@ -47,16 +47,12 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Category</label>
-                    <select style="color: white;"  name="category" class="form-control">
-                        <option value="" disabled selected>Choose Option</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    <label for="categories">Categories</label>
+                    <select name="categories[]" id="categories" class="form-control" multiple>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    @error('category')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
                 <div class="form-group">
                     <label>Image</label>
@@ -122,7 +118,9 @@
                 <td>{{ $post->title }}</td>
                 <td>{!! Str::limit($post->description, 50) !!}</td>
                 <td>{{ $post->status == 1 ? 'Publish' : 'Draft' }}</td>
-                <td>{{ $post->category->name }}</td>
+                <td>@foreach($post->categories as $categorie)
+                    {{ $categorie->name }}@if(!$loop->last), @endif
+                @endforeach</td>
                 <td>
                     <img src="{{ asset('image/' .$post->image) }}" alt="Post Image" class="img-fluid" style="max-width: 100px;">
                 </td>

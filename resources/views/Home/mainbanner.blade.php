@@ -15,30 +15,24 @@
             <div class="col-lg-8">
                 <div class="main-banner header-text">
                     <div class="Modern-Slider">
+                        @foreach ($post as $posts)
                         <!-- Item -->
                         <div class="item">
                             <div class="img-fill">
-                                <img src="assets/images/slide-01.jpg" alt="">
+                                <img src="{{ asset('image/' . $posts->image) }}" alt="" style="width: 600px; height: 600px;">
+                                <div class="overlay">
+                                    <h2 class="text-white">{{ Str::limit($posts->title, 20) }}</h2>
+                                    <p class="text-white" >{!! Str::limit($posts->description, 60) !!}</p>
+                                </div>
                             </div>
                         </div>
                         <!-- // Item -->
-                        <!-- Item -->
-                        <div class="item">
-                            <div class="img-fill">
-                                <img src="assets/images/slide-02.jpg" alt="">
-                            </div>
-                        </div>
-                        <!-- // Item -->
-                        <!-- Item -->
-                        <div class="item">
-                            <div class="img-fill">
-                                <img src="assets/images/slide-03.jpg" alt="">
-                            </div>
-                        </div>
-                        <!-- // Item -->
+                        @endforeach
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

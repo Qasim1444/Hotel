@@ -30,7 +30,19 @@
                             -->
                             <li class="scroll-to-section"><a href="/redirect#menu">Menu</a></li>
                             <li class="scroll-to-section"><a href="/redirect#chefs">Chefs</a></li>
-                            <li class="scroll-to-section"><a href="{{ url('blog') }}">Blog</a></li>
+                            <li class="dropdown scroll-to-section">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('/blog') }}">Latest Posts</a></li>
+                                    @foreach ($categories as $category)
+                                    <li>
+                                        <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
+                                    </li>
+                                @endforeach
+
+                                </ul>
+                            </li>
+
                             <li class="scroll-to-section"><a href="/redirect#contact">Contact Us</a></li>
                             <li class="scroll-to-section">
                                 @auth

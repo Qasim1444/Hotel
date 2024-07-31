@@ -497,7 +497,7 @@ class AdminController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $posts = Post::all();
-        return view('admin.Post', compact('categories'), compact('tags','posts'));
+        return view('admin.Post', compact('categories'), compact('tags','posts','categories'));
     }
 
     public function poststore(Request $request)
@@ -508,7 +508,8 @@ class AdminController extends Controller
                 'title' => ['required', 'string', 'max:255'],
                 'description' => 'required',
                 'status' => ['required', 'integer', 'max:255'],
-                'category' => ['required', 'integer', 'max:255'],
+                'categories' => ['required', 'array'],
+                'categories.*' => ['required', 'integer', 'exists:categories,id'],
                 'tags' => ['required', 'array'],
                 'tags.*' => ['required', 'string', 'max:255'],
                 'image' => ['image', 'mimes:jpeg,png,jpg,gif'] // Adjust max file size as needed
@@ -525,9 +526,10 @@ class AdminController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'status' => $request->status,
-                'category_id' => $request->category,
+
                 'image' => $file_name // Store image path in the database
             ]);
+            $post->categories()->attach($request->categories);
 
             foreach ($request->tags as $tag) {
                 $post->tags()->attach($tag);
@@ -556,54 +558,63 @@ class AdminController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        return view('admin.editposts', compact('categories'), compact('tags','posts'));
+        return view('admin.editposts', compact('categories'), compact('tags','posts','categories'));
 
     }
 
-    public function updatepost($id, Request $request)
+    public function Updatepost(Request $request, $id)
 {
     DB::beginTransaction();
-
     try {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'description' => 'required',
             'status' => ['required', 'integer', 'max:255'],
-            'category' => ['required', 'integer', 'max:255'],
+            'categories' => ['required', 'array'],
+            'categories.*' => ['required', 'integer', 'exists:categories,id'],
             'tags' => ['required', 'array'],
             'tags.*' => ['required', 'string', 'max:255'],
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif']
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'] // Allow null for optional image update
         ]);
 
+        // Find the post to update
         $post = Post::findOrFail($id);
 
-        $image = $post->image; // Default to the existing image
-
+        // Handle image upload if a new image is provided
         if ($request->hasFile('image')) {
-            $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('image'), $image);
+            // Delete old image if exists
+            if ($post->image) {
+                File::delete(public_path('image/' . $post->image));
+            }
+
+            $file_name = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('image'), $file_name);
+
+            // Update image path
+            $post->image = $file_name;
         }
 
-        $post->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $request->status,
-            'category_id' => $request->category,
-            'image' => $image // Store image path in the database
-        ]);
+        // Update post attributes
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->status = $request->status;
+        $post->save();
 
-        // Sync the tags for the post
+        // Sync categories and tags
+        $post->categories()->sync($request->categories);
+
+        // Sync tags
         $post->tags()->sync($request->tags);
 
         DB::commit();
     } catch (Exception $ex) {
         DB::rollBack();
-
         return back()->withErrors($ex->getMessage());
     }
 
     return redirect()->back()->with('success', 'Post successfully updated.');
 }
+
 
 
 

@@ -68,11 +68,9 @@
             <div class="col-md-3">
                 <h1 class="mt-5 pt-5 text-primary">Categories</h1>
                 <ul class="list-unstyled pt-3">
-                    @foreach ($categories as $categorie)
-                        <li class="mb-2">
-                            <a href="#" class="text-dark text-decoration-none">{{ $categorie->name }}</a>
-                        </li>
-                    @endforeach
+                    @foreach ( $categories->categories as $category)
+                    <li>{{ $category->name }}</li> <!-- Adjust 'name' if your category model uses a different field -->
+                @endforeach
                 </ul>
 
                 <h1 class="mt-5 text-primary">Tags</h1>

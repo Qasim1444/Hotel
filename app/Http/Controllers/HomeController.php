@@ -35,33 +35,49 @@ class HomeController extends Controller
     }
 
 
+    public function showByCategoryPost($id)
+    {
+        $post = Post::findOrFail($id);
+
+        return view('Home.showByCategoryPost', compact('post'));
+    }
+
     public function singleblog($id)
     {
         $user_id = Auth::id();
         $count = cart::where('user_id', $user_id)->count();
-        $categories=Category::all();
+        $categories= Post::with('categories')->findOrFail($id);
         $tags = Post::findOrFail($id)->tags;
         $posts=Post::find($id);
         $post=Post::all();
         return view('Home.singlepost',compact('posts','post','tags','categories','count'));
     }
     public function blog() {
+        $categories = Category::all();
         $user_id = Auth::id();
         $count = cart::where('user_id', $user_id)->count();
         $post=Post::all();
-        return view('Home.blog',compact('post','count'));
+        return view('Home.blog',compact('post','count','categories'));
 
     }
+    public function showByCategory($id)
+{
+    $category = Category::findOrFail($id);
+    $posts = $category->posts; // Assuming you have a relationship set up
+
+    return view('Home.showByCategory', compact('posts', 'category'));
+}
     public function index()
     {
         if (Auth::id()) {
             return redirect('redirect');
         }
         else{
-
+            $categories = Category::all();
+            $post=Post::all();
         $food = Food::all();
         $chief = Chief::all();
-        return view('Home.layout', compact('food'), compact('chief'));
+        return view('Home.layout', compact('food'), compact('chief','post','categories','food'));
         }
         }
 
@@ -75,11 +91,14 @@ class HomeController extends Controller
 
             return view('admin.adminpage');
         } else {
+
             $user_id = Auth::id();
             $count = cart::where('user_id', $user_id)->count();
             $food = Food::all();
             $chief = Chief::all();
-            return view('Home.layout', compact('food', 'chief', 'count'));
+            $categories = Category::all();
+            $post=Post::all();
+            return view('Home.layout', compact('food', 'chief', 'count','post','categories'));
         }
     }
 
@@ -139,6 +158,8 @@ class HomeController extends Controller
 
     public function showcart($id, Request $request)
     {
+
+        $categories = Category::all();
         $food = Food::all();
         $chief = Chief::all();
         $count=cart::where('user_id',$id)->count();
@@ -148,7 +169,7 @@ class HomeController extends Controller
         ->join('food', 'carts.food_id', '=', 'food.id')
         ->select('carts.*', 'food.title', 'food.price')
         ->get();
-        return view('Home.showcart',compact('count','data','food','chief'));
+        return view('Home.showcart',compact('count','data','food','chief','categories'));
 
     }
     public function remove($id)

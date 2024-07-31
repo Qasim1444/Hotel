@@ -53,6 +53,8 @@ Route::post('ckeditor/upload', [AdminController::class, 'upload'])->name('ckedit
 
 Route::get('/blog',[HomeController::class,'blog']);
 Route::get('/singleblog/{id}',[HomeController::class,'singleblog'])->name('edit.post.home');
+Route::get('category/{id}', [HomeController::class, 'showByCategory'])->name('category.show');
+Route::get('post/{id}', [HomeController::class, 'showByCategoryPost'])->name('post.show');
 
 
 Route::get('/',[HomeController::class,'index']);

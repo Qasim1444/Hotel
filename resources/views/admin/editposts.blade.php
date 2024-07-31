@@ -41,11 +41,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Category</label>
-                            <select style="color: white" name="category" class="form-control">
-                                <option value="" disabled>Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ $posts->category->id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <label>Categories</label>
+                            <select style="background-color: #2A3038;color: white;" name="categories[]" class="form-control" multiple>
+                                <option value="" disabled>Select Tags</option>
+                                @foreach ($categories as $categorie)
+                                    <option value="{{ $categorie->id }}" {{ in_array($categorie->id, $posts->categories->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $categorie->name }}</option>
                                 @endforeach
                             </select>
                         </div>
