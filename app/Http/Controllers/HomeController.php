@@ -37,9 +37,14 @@ class HomeController extends Controller
 
     public function showByCategoryPost($id)
     {
+        $user_id = Auth::id();
+        $count = cart::where('user_id', $user_id)->count();
+        $categories = Category::all();
+        $categorie= Post::with('categories')->findOrFail($id);
         $post = Post::findOrFail($id);
-
-        return view('Home.showByCategoryPost', compact('post'));
+        $tags = Post::findOrFail($id)->tags;
+        $posts=Post::all();
+        return view('Home.showByCategoryPost', compact('post','categories','count','tags','posts','categorie'));
     }
 
     public function singleblog($id)
