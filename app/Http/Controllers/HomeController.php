@@ -49,13 +49,14 @@ class HomeController extends Controller
 
     public function singleblog($id)
     {
+        $categories = Category::all();
         $user_id = Auth::id();
         $count = cart::where('user_id', $user_id)->count();
-        $categories= Post::with('categories')->findOrFail($id);
+        $categorie= Post::with('categories')->findOrFail($id);
         $tags = Post::findOrFail($id)->tags;
         $posts=Post::find($id);
         $post=Post::all();
-        return view('Home.singlepost',compact('posts','post','tags','categories','count'));
+        return view('Home.singlepost',compact('posts','post','tags','categories','count','categorie'));
     }
     public function blog() {
         $categories = Category::all();
