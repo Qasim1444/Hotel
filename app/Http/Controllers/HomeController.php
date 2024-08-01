@@ -62,10 +62,13 @@ class HomeController extends Controller
     }
     public function showByCategory($id)
 {
+    $categories = Category::all();
     $category = Category::findOrFail($id);
+    $user_id = Auth::id();
+    $count = cart::where('user_id', $user_id)->count();
     $posts = $category->posts; // Assuming you have a relationship set up
 
-    return view('Home.showByCategory', compact('posts', 'category'));
+    return view('Home.showByCategory', compact('posts', 'category','categories','count'));
 }
     public function index()
     {
