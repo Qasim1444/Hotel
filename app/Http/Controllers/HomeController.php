@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 use App\Models\Comment;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Str;
 class HomeController extends Controller
 {
 
@@ -33,19 +34,20 @@ class HomeController extends Controller
             return redirect()->route('login')->with('error', 'You need to be logged in to comment.');
         }
     }
-
-
-    public function showByCategoryPost($id)
+    public function showByCategoryPost($title)
     {
+        $title = str_replace('-', ' ', urldecode($title));
         $user_id = Auth::id();
         $count = cart::where('user_id', $user_id)->count();
         $categories = Category::all();
-        $categorie= Post::with('categories')->findOrFail($id);
-        $post = Post::findOrFail($id);
-        $tags = Post::findOrFail($id)->tags;
-        $posts=Post::all();
-        return view('Home.showByCategoryPost', compact('post','categories','count','tags','posts','categorie'));
+
+        $categorie = Post::with('categories')->where('title', $title)->firstOrFail();
+        $post = Post::where('title', $title)->firstOrFail();
+        $tags = $post->tags;
+        $posts = Post::all();
+        return view('Home.showByCategoryPost', compact('post', 'categories', 'count', 'tags', 'posts', 'categorie'));
     }
+
 
     public function singleblog($id)
     {
@@ -66,16 +68,18 @@ class HomeController extends Controller
         return view('Home.blog',compact('post','count','categories'));
 
     }
-    public function showByCategory($id)
-{
-    $categories = Category::all();
-    $category = Category::findOrFail($id);
-    $user_id = Auth::id();
-    $count = cart::where('user_id', $user_id)->count();
-    $posts = $category->posts; // Assuming you have a relationship set up
+    public function showByCategory($name)
+    {
+        $categories = Category::all();
+        $category = Category::where('name', $name)->firstOrFail();
+        $user_id = Auth::id();
+        $count = Cart::where('user_id', $user_id)->count();
+        $posts = $category->posts; // Assuming you have a relationship set up
 
-    return view('Home.showByCategory', compact('posts', 'category','categories','count'));
-}
+        return view('Home.showByCategory', compact('posts', 'category', 'categories', 'count'));
+    }
+
+
     public function index()
     {
         if (Auth::id()) {

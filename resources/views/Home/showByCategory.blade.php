@@ -58,7 +58,11 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ Str::limit($post->title, 20) }}</h5>
                         <p>{!! Str::limit($post->description, 50) !!}</p>
-                        <a href="{{ url('post/' . $post->id) }}" class="btn btn-success btn-sm">Read More</a>
+                        <a href="{{ route('post.show', ['title' => str_replace(' ', '-', $post->title)]) }}" class="btn btn-success btn-sm">Read More</a>
+
+
+
+
                     </div>
                 </div>
                 @endforeach
@@ -102,8 +106,10 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ Str::limit($post->title, 20) }}</h5>
 
-                                            <a href="{{ url('post/' . $post->id) }}"
-                                                class="btn btn-outline-success btn-sm">Read More</a>
+                                            <a href="{{ route('post.show', ['title' => str_replace(' ', '-', $post->title)]) }}" class="btn btn-success btn-sm">Read More</a>
+
+
+
 
                                         </div>
                                     </div>

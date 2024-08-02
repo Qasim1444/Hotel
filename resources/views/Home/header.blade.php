@@ -34,11 +34,14 @@
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ url('/blog') }}">Latest Posts</a></li>
-                                    @foreach ($categories as $category)
-                                    <li>
-                                        <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
-                                    </li>
-                                @endforeach
+                                    <ul>
+                                        @foreach ($categories as $category)
+                                            <li>
+                                                <a href="{{ route('category.show', $category->name) }}">{{ $category->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+
 
                                 </ul>
                             </li>
