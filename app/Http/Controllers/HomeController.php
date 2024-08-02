@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Cart;
+use App\Models\Tag;
 use App\Models\Chief;
 use App\Models\Food;
 use App\Models\Order;
@@ -64,10 +65,12 @@ class HomeController extends Controller
 
     public function blog() {
         $categories = Category::all();
+        $tags=Tag::all();
+
         $user_id = Auth::id();
         $count = cart::where('user_id', $user_id)->count();
         $post=Post::all();
-        return view('Home.blog',compact('post','count','categories'));
+        return view('Home.blog',compact('post','count','categories','tags'));
 
     }
     public function showByCategory($name)
@@ -77,8 +80,9 @@ class HomeController extends Controller
         $user_id = Auth::id();
         $count = Cart::where('user_id', $user_id)->count();
         $posts = $category->posts; // Assuming you have a relationship set up
-
-        return view('Home.showByCategory', compact('posts', 'category', 'categories', 'count'));
+        $tags=Tag::all();
+        $postes=Post::all();
+        return view('Home.showByCategory', compact('posts', 'category', 'categories', 'count','tags','postes'));
     }
 
 

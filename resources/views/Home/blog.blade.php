@@ -87,30 +87,81 @@
 
 
 
+<div class="row">
+    <div class="col-md-9">
+        <section id="gallery">
+            <div class="container">
+              <div class="row">
+                  @foreach ($post as $posts)
+                <div class="col-lg-4 mb-4">
+                  <div class="card">
+                      <img  class="post-image" src="{{ asset('image/' . $posts->image) }}" alt="Post Image" class="card-img-top">
+
+                    <div class="card-body">
+                      <h5 class="card-title">{{ Str::limit($posts->title, 20) }}</h5>
+
+                      <a href=" {{ route('edit.post.home', ['title' => str_replace(' ', '-', $posts->title)]) }}" class="btn btn-success btn-sm">Read More</a>
 
 
-<section id="gallery">
-  <div class="container">
-    <div class="row">
-        @foreach ($post as $posts)
-      <div class="col-lg-4 mb-4">
-        <div class="card">
-            <img  class="post-image" src="{{ asset('image/' . $posts->image) }}" alt="Post Image" class="card-img-top">
 
-          <div class="card-body">
-            <h5 class="card-title">{{ Str::limit($posts->title, 20) }}</h5>
+                    </div>
+                  </div>
+                </div>
+                  @endforeach
+              </div>
+            </div>
+          </section>
 
-            <a href=" {{ route('edit.post.home', ['title' => str_replace(' ', '-', $posts->title)]) }}" class="btn btn-success btn-sm">Read More</a>
-
-
-
-          </div>
-        </div>
-      </div>
-        @endforeach
     </div>
-  </div>
-</section>
+    <div class="col-md-3">
+        <h1 class="mt-5 pt-5 text-primary">Categories</h1>
+        <ul class="list-unstyled pt-3">
+            @foreach ( $categories  as $category)
+            <li>{{ $category->name }}</li> <!-- Adjust 'name' if your category model uses a different field -->
+        @endforeach
+        </ul>
+
+        <h1 class="mt-5 text-primary">Tags</h1>
+        <ul class="list-unstyled pt-3">
+            @foreach ($tags as $tag)
+                <li class="mb-2">
+                    <a href="#" class="text-dark text-decoration-none">{{ $tag->name }}</a>
+                </li>
+            @endforeach
+        </ul>
+
+        <h1 class="mt-5 text-primary">Recent Blogs</h1>
+        <ul class="list-unstyled pt-3">
+            @foreach ($post as $posts)
+                <li class="mb-2">
+                    <a href="#" class="text-dark text-decoration-none">{{ Str::limit($posts->title, 20) }}</a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <style>
+        .col-md-3 h1 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .col-md-3 ul {
+            padding-left: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+        .col-md-3 a {
+            transition: color 0.3s ease;
+        }
+        .col-md-3 a:hover {
+            color: #007bff;
+        }
+    </style>
+</div>
+
+
 
 
 
