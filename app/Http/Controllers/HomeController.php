@@ -48,18 +48,20 @@ class HomeController extends Controller
         return view('Home.showByCategoryPost', compact('post', 'categories', 'count', 'tags', 'posts', 'categorie'));
     }
 
-
-    public function singleblog($id)
+    public function singleblog($title)
     {
+        $title = str_replace('-', ' ', urldecode($title));
         $categories = Category::all();
         $user_id = Auth::id();
-        $count = cart::where('user_id', $user_id)->count();
-        $categorie= Post::with('categories')->findOrFail($id);
-        $tags = Post::findOrFail($id)->tags;
-        $posts=Post::find($id);
-        $post=Post::all();
-        return view('Home.singlepost',compact('posts','post','tags','categories','count','categorie'));
+        $count = Cart::where('user_id', $user_id)->count();
+        $posts = Post::where('title', $title)->firstOrFail(); // Find post by title
+        $tags = $posts->tags; // Get tags for the post
+        $categorie= $posts->categories;
+        $post = Post::all(); // Get all posts
+        return view('Home.singlepost', compact('posts', 'post', 'tags', 'categories', 'count','categorie'));
     }
+
+
     public function blog() {
         $categories = Category::all();
         $user_id = Auth::id();

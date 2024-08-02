@@ -52,7 +52,8 @@ Route::middleware([
 Route::post('ckeditor/upload', [AdminController::class, 'upload'])->name('ckeditor.upload');
 
 Route::get('/blog',[HomeController::class,'blog']);
-Route::get('/singleblog/{id}',[HomeController::class,'singleblog'])->name('edit.post.home');
+Route::get('/singleblog/{title}', [HomeController::class, 'singleblog'])->name('edit.post.home');
+
 Route::get('category/{name}', [HomeController::class, 'showByCategory'])->name('category.show');
 Route::get('post/{title}', [HomeController::class, 'showByCategoryPost'])->name('post.show');
 

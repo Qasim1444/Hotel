@@ -13,13 +13,13 @@
     <title>Classic Cafe - Restaurant</title>
 
     <style>
-  
+
        .post-image {
             height: 400px; /* Adjust as needed */
             width: 100%;
             object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
-        } 
-    
+        }
+
 .carousel-img {
     max-height: 400px; /* Set your desired max height */
     object-fit: cover; /* Maintain aspect ratio and cover the entire area */
@@ -60,7 +60,9 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ Str::limit($posts->title, 20) }}</h5>
                     <p>{!! Str::limit($posts->description, 50) !!}</p>
-                    <a href="{{ route('edit.post.home', $posts->id) }}" class="btn btn-success btn-sm">Read More</a>
+                    <a href="{{ route('edit.post.home', ['title' => str_replace(' ', '-', $posts->title)]) }}" class="btn btn-success btn-sm">Read More</a>
+
+
                 </div>
             </div>
             @endforeach
@@ -75,11 +77,11 @@
         </a>
     </div>
 
-   
-  
-     
 
-    
+
+
+
+
 </div>
 
 
@@ -94,12 +96,14 @@
       <div class="col-lg-4 mb-4">
         <div class="card">
             <img  class="post-image" src="{{ asset('image/' . $posts->image) }}" alt="Post Image" class="card-img-top">
-        
+
           <div class="card-body">
             <h5 class="card-title">{{ Str::limit($posts->title, 20) }}</h5>
-           
-            <a href="{{ route('edit.post.home', $posts->id) }}" class="btn btn-outline-success btn-sm">Read More</a>
-           
+
+            <a href=" {{ route('edit.post.home', ['title' => str_replace(' ', '-', $posts->title)]) }}" class="btn btn-success btn-sm">Read More</a>
+
+
+
           </div>
         </div>
       </div>

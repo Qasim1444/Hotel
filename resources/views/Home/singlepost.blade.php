@@ -68,7 +68,7 @@
             <div class="col-md-3">
                 <h1 class="mt-5 pt-5 text-primary">Categories</h1>
                 <ul class="list-unstyled pt-3">
-                    @foreach ( $categorie->categories as $category)
+                    @foreach ( $categorie as $category)
                     <li>{{ $category->name }}</li> <!-- Adjust 'name' if your category model uses a different field -->
                 @endforeach
                 </ul>
